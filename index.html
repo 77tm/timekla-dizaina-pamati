@@ -891,7 +891,13 @@ nav.open {
       document.documentElement.setAttribute('data-theme', savedTheme);
       if (savedTheme === 'dark') {
         logoImg.src = 'img/logo_dark.png';
+      } else {
+        logoImg.src = 'img/logo_light.png';
       }
+    } else {
+      // No saved preference → explicitly force dark mode now:
+      document.documentElement.setAttribute('data-theme', 'dark');
+      logoImg.src = 'img/logo_dark.png';
     }
 
     function toggleTheme() {
