@@ -587,6 +587,80 @@ footer > h2 {
   object-fit: contain;
 }
 
+/* ──────────────── Hamburger / Mobile Nav ──────────────── */
+
+/* Hide the .menu-btn on desktop by default */
+.menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color var(--transition-fast);
+}
+
+.menu-btn:hover {
+  color: var(--color-accent-end);
+}
+
+/* When nav is “open” on mobile, we’ll add this class */
+nav.open {
+  display: flex !important;
+}
+
+/*────────────────────────────────────────────────────────*/
+
+/*──────────── Adjust header layout for smaller screens ────────────*/
+@media (max-width: 768px) {
+  header {
+    /* Reduce horizontal padding so things fit */
+    padding: 1rem;
+  }
+
+  /* Show hamburger, hide normal nav by default */
+  .menu-btn {
+    display: block;
+  }
+
+  nav {
+    display: none;               /* start hidden */
+    position: absolute;
+    top: 100%;                    /* drop-down just under header */
+    left: 0;
+    width: 100%;
+    background-color: var(--color-bg-dark);
+    flex-direction: column;
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 99;
+  }
+
+  nav a {
+    margin: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: var(--color-text-light);
+  }
+
+  nav a::after { /* remove underline animation on mobile */
+    display: none;
+  }
+
+  /* Keep logo on the left, hamburger next, then toggle button on right */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Make sure .toggle-btn is still visible on the right */
+  .toggle-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
     /* ---------------------------------------
        Media Queries (Responsive)
        --------------------------------------- */
@@ -647,7 +721,7 @@ footer > h2 {
    <div class="logo" onclick="scrollToTop()" style="cursor: pointer;">
     <img
         id="logoImg"
-        src="img/logo_light.png"
+        src="img/logo_dark.png"
         alt="Latvijas Universitātes logo"
     />
     </div>
@@ -842,6 +916,18 @@ footer > h2 {
     function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+     function toggleMenu() {
+        const nav = document.getElementById('mainNav');
+        nav.classList.toggle('open');
+    }
+
+    // Close menu automatically if user clicks a link (optional)
+    document.querySelectorAll('#mainNav a').forEach(link => {
+        link.addEventListener('click', () => {
+        document.getElementById('mainNav').classList.remove('open');
+        });
+    });
 
   </script>
 </body>
