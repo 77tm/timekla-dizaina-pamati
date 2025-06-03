@@ -166,11 +166,13 @@
         transform var(--transition-fast);
     }
 
-    .toggle-btn:hover {
-      background-color: var(--gradient-accent);
-      color: #fff;
-      transform: scale(1.05);
+    .toggle-btn:hover,
+    .toggle-btn:active {
+    background-color: var(--gradient-accent);
+    color: var(--color-text-light);
+    transform: scale(1.05);
     }
+
 
     /* ---------------------------------------
        Hero Section: Clean Centered Heading
